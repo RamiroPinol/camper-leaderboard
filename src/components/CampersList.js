@@ -7,7 +7,6 @@ class CampersList extends Component {
     this.state = { alltime: [], recent: [], current: 'alltime' }
 
     this.changeList = this.changeList.bind(this);
-    this.whatToRender = this.whatToRender.bind(this);
   }
 
   componentWillMount() {
@@ -28,29 +27,31 @@ class CampersList extends Component {
     }
   }
 
-  whatToRender() {
-    if (this.state.current === 'alltime') {
-      return this.state.alltime.map((camper, index) => <CamperRow key={camper.username} index={index} camper={camper} />)
-    } else {
-      return this.state.recent.map((camper, index) => <CamperRow key={camper.username} index={index} camper={camper} />)
-    }
-  }
-
   render() {
     if (this.state.alltime.length > 0) {
       return (
         <div>
           <table>
-            <thead onClick={this.changeList}>
+            <thead>
               <tr>
                 <th>#</th>
                 <th>Camper</th>
-                <th>Last 30 days points</th>
-                <th>Alltime points</th>
+                <th
+                  className={this.state.current === "recent" ? "active" : ""}
+                  onClick={this.state.current === "alltime" ? this.changeList : ""}>
+                  Last 30 days points
+                </th>
+                <th
+                  className={this.state.current === "alltime" ? "active" : ""}
+                  onClick={this.state.current === "recent" ? this.changeList : ""}>
+                  Alltime points
+                </th>
               </tr>
             </thead>
             <tbody>
-              {this.whatToRender()}
+              {this.state[this.state.current].map( (camper, index) => {
+                return <CamperRow key={camper.username} index={index} camper={camper} />
+              })}
             </tbody>
           </table>
         </div>
