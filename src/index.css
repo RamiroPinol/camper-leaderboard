@@ -8,7 +8,7 @@ body {
 header {
   background-color: #25373A;
   margin-bottom: 20px;
-  height: 55px;
+  height: 75px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
   line-height: 55px;
   color: #c3c8c9;
@@ -16,6 +16,12 @@ header {
 
 header h2 {
   margin: 0;
+}
+
+header p {
+  margin: 0;
+  line-height: 15px;
+  font-size: 12px;
 }
 
 table {
